@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
     num_nodes = 3
 
     config.vm.define "control" do |control|
-        control.vm.box = "debian12"
+        control.vm.box = "nulluuid/debian12"
         control.trigger.before :up do |trigger|
             trigger.ruby do |env,machine|
                 create_iso("control", "control")
@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
                     create_iso("node#{i}", "node")
                 end
             end
-            node.vm.box = "debian12"
+            node.vm.box = "nulluuid/debian12"
             node.vm.hostname = "node#{i}"
             node.vm.network "private_network", ip: "192.168.0.#{i+10}"
             node.vm.provider :virtualbox do |vb|
